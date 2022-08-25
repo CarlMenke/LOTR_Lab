@@ -1,70 +1,156 @@
-# Getting Started with Create React App
+# React Lord of the Rings 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![lord of the rings](https://didyouseethatone.files.wordpress.com/2015/04/the-lord-of-the-rings-the-fellowship-of-the-ring-3.jpg)
 
-## Available Scripts
+## Overview
+Let's build something small to reinforce what you've learned so far. We're going to practice creating components and passing information into them through props. We'll be building a simple website that displays titles, movie posters, and runtime for the original Lord of the Rings Trilogy.
 
-In the project directory, you can run:
+## Objectives
+- Pass data through React props into child components
+- Create a reusable component to display data from props
 
-### `npm start`
+## What You'll Be Building
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+You'll be building a website in this lab with a header and 3 movies. Here is an example site:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Lord of the Rings movie info](https://i.ibb.co/17H9k6S/lotr-mock.png)
 
-### `npm test`
+## Getting Started
+- `Fork` and `clone` this repository and `cd` into the new directory.
+- You've been given starter code. Run `npm i` to install dependencies.
+- You'll be working in the `src` directory of this app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Create A Simple Movie Component
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The `components` directory is typically where you'll add components in a React project to organize your files. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Inside of the `components` folder, create a new React Component file called `Movie.js`.
 
-### `npm run eject`
+We'll write our `Movie` component as a functional component:
+```jsx
+import React from 'react';
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+const Movie = () => {
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  return (
+    <div>
+      
+    </div>
+  )
+};
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+export default Movie;
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Add some JSX inside the return so this component will be visible in our application. 
 
-## Learn More
+Let's keep the JSX simple for now, and we'll make it more complex once we're sure it works. Remember, our goal is to display the movie poster, title, and runtime information. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Let's add one `<h1>` for the movie title, one `<img>` for the poster, and a `<p>` for the runtime.
+- In the `<h1>` and `<p>` tags add this text to start:
+```jsx
+<h1>Lord of the Rings: </h1>
+<p>Runtime: </p>
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+___
+### Viewing the Component
 
-### Code Splitting
+Open `src/App.js` and add the `<Movie />` inside of `<main>`. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Now open the app in your browser with `npm start` if you haven't already to see if it is rendering.
 
-### Analyzing the Bundle Size
+Uh oh. There's an error.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+Failed to compile
+./src/App.js
+  Line 11:  'Movie' is not defined  react/jsx-no-undef
+```
 
-### Making a Progressive Web App
+`'Movie'` is not defined? Ah.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![simply](https://i.imgflip.com/4xizpf.jpg)
 
-### Advanced Configuration
+One does not simply refer to components in React. In our `src/App.js`, we're saying "Display what's returned from the `Movie` component." However - we haven't told `src/Apps.js` where to find the `Movie` component!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Add an import statement at the top of the `src/App.js` file.
+- You can use VS Code's IntelliSense to see if your path is correct as you type your import statement string.
 
-### Deployment
+Now you should see the page without the error message, and it should have the JSX from the Movie component.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+___
+### Passing Information via Properties (props)
+We need to make the Movie component accept information so we can use it to display different titles and runtimes. 
 
-### `npm run build` fails to minify
+- In the `src/App.js` file, add `title`, `hours`, `minutes`, and `poster` props to the `<Movie />` tag.
+- Remember, when adding props to a component, we need to first give the prop a name, then pass data into it. Example:
+```jsx
+<Component propName={propData} />
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Here is some starter data for you to add in for your `<Movie />` props.
+
+title | hours | minutes | poster |
+------|-------|--------|--------|
+The Fellowship of the Ring | 2 | 58 | https://image.tmdb.org/t/p/original/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg |
+
+
+We'll be able to read the value of these props from inside the component. You can name props pretty much
+anything you want - but it's good practice to be descriptive!
+
+- Update the JSX in `src/components/Movie.js` to access and display the value of each prop we created.
+
+Refresh the page and make sure everything works correctly.
+
+___
+### Reusing the Component
+
+![one ring](https://i.stack.imgur.com/9u9xO.gif)
+
+_One component to rule them all_
+
+Once you've got props working for one component, then write two more!
+
+In `src/App.js`, call the `<Movie />` component again with different values for the `title`, `hours`, `minutes`, and `poster`.
+properties. Display information for the complete trilogy! (If you don't know everything about Lord of the Rings off the top of your head, here it is).
+
+title | hours | minutes | poster |
+------|-------|--------|--------|
+The Fellowship of the Ring | 2 | 58 | https://image.tmdb.org/t/p/original/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg |
+The Two Towers | 2 | 59 | https://image.tmdb.org/t/p/original/rrGlNlzFTrXFNGXsD7NNlxq4BPb.jpg |
+The Return of the King | 3 | 21 | https://image.tmdb.org/t/p/original/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg |
+
+In case you want to nerd out and add even more details, here are handy links to the IMDB page for each movie:
+
+* [Lord of the Rings: The Fellowship of the Ring](http://www.imdb.com/title/tt0120737/)
+* [Lord of the Rings: The Two Towers](http://www.imdb.com/title/tt0167261/)
+* [Lord of the Rings: The Return of the King](http://www.imdb.com/title/tt0167260/)
+
+When you're finished, add style to create a Lord of the Rings themed page.
+
+## Recap
+Components are great because they allow us to compartmentalize code and easily reuse parts we create. We simply set the value of props and the component defines how everything should be displayed.
+
+In this instance, we factored out some redundancy of the movie titles.
+- All these movies start with `"Lord of the Rings:"`, so only the unique part is the prop.
+- Similarly, we don't have to rewrite the format of the runtime information.
+
+Building and reusing components becomes especially powerful the more complex the components become.
+- Imagine building a component for video search results inside YouTube.
+  - The props list is huge:
+    - tons of links
+    - time information
+    - preview images
+    - options to add the result to a playlist
+    - and all sorts of other things.
+
+Building one component to rule them all would save you a lot of time and headaches!
+
+![frodo](https://64.media.tumblr.com/tumblr_m9p1ftCnQl1rtz7u4o1_500.gif)
+
+## Resources
+- [Gosh!](https://www.youtube.com/watch?v=L9AJeakCa6w&ab_channel=BurtBot)
