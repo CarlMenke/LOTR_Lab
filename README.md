@@ -153,4 +153,8 @@ Building one component to rule them all would save you a lot of time and headach
 ![frodo](https://64.media.tumblr.com/tumblr_m9p1ftCnQl1rtz7u4o1_500.gif)
 
 ## Resources
+<<<<<<< HEAD
 - [Gosh!](https://www.youtube.com/watch?v=L9AJeakCa6w&ab_channel=BurtBot)
+=======
+- [Gosh!](https://www.youtube.com/watch?v=L9AJeakCa6w&ab_channel=BurtBot)
+>>>>>>> e88e67496246e948e90c036f9fdedfaa1c09dda3
